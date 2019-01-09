@@ -8,7 +8,17 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-g", "main.cpp"
+                "-g",
+                "source/main.cpp",
+                "source/glad.c",
+                "-I\"${workspaceFolder}\\include\"",
+                "-L\"${workspaceFolder}\\lib\"",
+                "-lglfw3",
+                "-lgdi32",
+                "-lopengl32",
+//                "-lgdi32",
+//                "-lglfw3",
+                "-Wl,--subsystem,windows"
             ], 
             "group":{
                 "kind": "build",
