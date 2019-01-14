@@ -11,6 +11,8 @@
                 "-g",
                 "source/main.cpp",
                 "source/glad.c",
+                "source/core/console/window.cpp",
+                //"source/core/console/console.cpp",
                 "-I\"${workspaceFolder}\\include\"",
                 "-L\"${workspaceFolder}\\lib\"",
                 "-lglfw3",
@@ -18,7 +20,7 @@
                 "-lopengl32",
 //                "-lgdi32",
 //                "-lglfw3",
-                "-Wl,--subsystem,windows"
+//                "-Wl,--subsystem,windows"
             ], 
             "group":{
                 "kind": "build",
