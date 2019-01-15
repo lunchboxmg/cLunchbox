@@ -6,11 +6,15 @@
 
 //#include <core/console/console.h>
 #include <core/console/window.h>
+#include <core/console/keyboard.h>
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 void processInput(GLFWwindow *window);
+
+// Use global until the console / manager class is coded
+BOX_Keyboard* gKeyboard;
 
 int main()
 {
@@ -22,6 +26,7 @@ int main()
         std::cout << "Window Context was not created correctly! (" << passed << ")" << std::endl;
         return passed;
     }
+    gKeyboard = new BOX_Keyboard(window.GetContext());
 
     // render loop
     // -----------
@@ -49,6 +54,7 @@ int main()
         //std::cout << "FPS: " << 1/dt << std::endl;
     }
     window.Destroy();
+    delete gKeyboard;
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

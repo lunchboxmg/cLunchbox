@@ -13,12 +13,12 @@ class BOX_Keyboard
 {
     private:
 
-        unsigned char mKeysStatus[1024];
+        unsigned char mKeyState[1024];
         unsigned int mModBitfield;
 
     public:
 
-        BOX_Keyboard();
+        BOX_Keyboard(GLFWwindow* aWindow);
 
         bool IsKeyPressed(int aKey);
         bool IsKeyHeld(int aKey);
@@ -26,5 +26,7 @@ class BOX_Keyboard
         bool IsModPressed(int aMod);
 
         void SetKeyState(int aKey, unsigned char aState);
+        void SetModBitField(int aMods);
+        unsigned char GetKeyState(int aKey);
 
-}
+};
