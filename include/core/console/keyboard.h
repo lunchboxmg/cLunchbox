@@ -20,6 +20,8 @@ class BOX_Keyboard
 
         BOX_Keyboard(GLFWwindow* aWindow);
 
+        void Update();
+
         bool IsKeyPressed(int aKey);
         bool IsKeyHeld(int aKey);
         bool IsKeyReleased(int aKey);
