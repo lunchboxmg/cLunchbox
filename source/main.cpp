@@ -1,32 +1,20 @@
 #include <iostream>
 #include <fstream>
 
-#include <vendor/glad/glad.h>
-#include <vendor/GLFW/glfw3.h>
-
-//#include <core/console/console.h>
-#include <core/console/window.h>
-#include <core/console/keyboard.h>
+#include <core/console/console.hpp>
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 void processInput(GLFWwindow *window);
 
-// Use global until the console / manager class is coded
-BOX_Keyboard* gKeyboard;
-
 int main()
 {
-
-    BOX_Window window = BOX_Window(SCR_WIDTH, SCR_HEIGHT, "Test Window");
-    int passed = window.CreateContext();
-    if (passed < 0)
+    if (!BOX_Console::Instance().Initialize(SCR_WIDTH, SCR_HEIGHT, "Test Window"))
     {
-        std::cout << "Window Context was not created correctly! (" << passed << ")" << std::endl;
-        return passed;
+        return -999;
     }
-    gKeyboard = new BOX_Keyboard(window.GetContext());
+    BOX_Window window = BOX_Console::Instance().GetWindow();
 
     // render loop
     // -----------
@@ -54,7 +42,6 @@ int main()
         //std::cout << "FPS: " << 1/dt << std::endl;
     }
     window.Destroy();
-    delete gKeyboard;
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

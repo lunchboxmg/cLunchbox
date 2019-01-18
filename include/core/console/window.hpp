@@ -1,9 +1,8 @@
 #include <vendor/glad/glad.h>
 #include <vendor/GLFW/glfw3.h>
 
-#ifndef _BOX_window_h_
-#define _BOX_window_h_
-#endif
+#ifndef BOX_WINDOW_HPP
+#define BOX_WINDOW_HPP
 
 class BOX_Window
 {
@@ -17,9 +16,11 @@ class BOX_Window
 
     public:
 
+        BOX_Window();
         BOX_Window(unsigned int, unsigned int, const char*);
 
         int  CreateContext();
+        int  CreateContext(unsigned int, unsigned int, const char*);
         void Swap();
         void Close();
         void RequestClose();
@@ -35,3 +36,5 @@ class BOX_Window
         unsigned int GetHeight()  { return mHeight; }
 
 };
+
+#endif

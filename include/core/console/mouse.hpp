@@ -1,9 +1,8 @@
 #include <vendor/glad/glad.h>
 #include <vendor/GLFW/glfw3.h>
 
-#ifndef _BOX_mouse_h_
-#define _BOX_mouse_h_
-#endif
+#ifndef BOX_MOUSE_HPP
+#define BOX_MOUSE_HPP
 
 class BOX_Mouse
 {
@@ -38,4 +37,6 @@ class BOX_Mouse
         float GetScrollX() { return mScrollOffset_x; }
         float GetScrollY() { return mScrollOffset_y; }
 
-}
+};
+
+#endif

@@ -1,40 +1,59 @@
 #include <iostream>
 
-#include <core/console/console.h>
+#include <core/console/console.hpp>
+#include <core/console/window.hpp>
+#include <core/console/keyboard.hpp>
 
-Console::Console(unsigned int aWidth, unsigned int aHeight, const char* aTitle)
+BOX_Console::BOX_Console():
+    mWindow(BOX_Window()),
+    mKeyboard(BOX_Keyboard()),
+    mInitialized(false)
 {
-    // Initialize and configure GLFW
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    
+}
 
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
-#endif
-   
-    // Create the GFLW Window
-    mAspect = (float)mWidth/(float)mHeight;
-    GLFWwindow* temp = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
-    if (temp == NULL);
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        exit(-10);
-    }
-    mWindow = temp;
-    glfwMakeContextCurrent(mWindow);
-    //glfwSetFramebufferSizeCallback(mWindow, WindowResizeCallback);
-    glViewport(0, 0, mWidth, mHeight);
-
-    // load all OpenGL function pointers
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        glfwTerminate();
-        exit(-20);
-    }
-
+BOX_Console::~BOX_Console()
+{
 
 }
+
+bool BOX_Console::Initialize(unsigned int aWidth, unsigned int aHeight, const char* aTitle)
+{
+    // Create the Window context
+    int result = mWindow.CreateContext(aWidth, aHeight, aTitle);
+    if (result < 0)
+    {
+        return false;
+    }
+
+    // Set GLFW callbacks
+    GLFWwindow* window = mWindow.GetContext();
+    glfwSetKeyCallback(window, KeyCallback);
+
+    mInitialized = true;
+    return true;
+}
+
+static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScancode, int aAction, int aMods)
+{
+    static BOX_Keyboard __keyboard = BOX_Console::Instance().GetKeyboard();
+
+    if (0 <= aKey && aKey <= 1024)
+    {
+        if (aAction == GLFW_PRESS)
+        {
+            if (!__keyboard.IsKeyPressed(aKey))
+            {
+                __keyboard.SetKeyState(aKey, KEY_PRESSED | KEY_HELD);
+            }
+        }
+        if (aAction == GLFW_RELEASE)
+        {
+            unsigned char state = __keyboard.GetKeyState(aKey);
+            __keyboard.SetKeyState(aKey, state ^ KEY_HELD | KEY_RELEASED);
+        }
+        __keyboard.SetModBitField(aMods);
+        std::cout << aKey << "\t" << aAction << "\t" << aMods << std::endl;
+    }
+}
+

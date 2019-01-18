@@ -1,8 +1,18 @@
 #include <iostream>
 
-#include <core/console/window.h>
+#include <core/console/window.hpp>
 
 void WindowResizeCallback(GLFWwindow* window, int width, int height);
+
+BOX_Window::BOX_Window():
+    mWidth(0),
+    mHeight(0),
+    mAspect(0),
+    mWindow(NULL),
+    mCloseRequested(false)
+{
+    ;
+}
 
 BOX_Window::BOX_Window(unsigned int aWidth, unsigned int aHeight, const char* aTitle):
     mWidth(aWidth),
@@ -51,6 +61,13 @@ int BOX_Window::CreateContext()
     }
 
     return 1;
+}
+
+int BOX_Window::CreateContext(unsigned int aWidth, unsigned int aHeight, const char* aTitle)
+{
+    mWidth = aWidth;
+    mHeight = aHeight;
+    return CreateContext();
 }
 
 void BOX_Window::SetDimensions(unsigned int aWidth, unsigned int aHeight)

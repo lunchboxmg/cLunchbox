@@ -1,9 +1,8 @@
 #include <vendor/glad/glad.h>
 #include <vendor/GLFW/glfw3.h>
 
-#ifndef _BOX_timing_h_
-#define _BOX_timing_h_
-#endif
+#ifndef BOX_TIMING_HPP
+#define BOX_TIMING_HPP
 
 class BOX_Timing
 {
@@ -27,4 +26,6 @@ class BOX_Timing
         float GetFps();
         float GetCount();
         
-}
+};
+
+#endif

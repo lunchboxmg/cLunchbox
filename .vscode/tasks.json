@@ -13,7 +13,7 @@
                 "source/glad.c",
                 "source/core/console/window.cpp",
                 "source/core/console/keyboard.cpp",
-                //"source/core/console/console.cpp",
+                "source/core/console/console.cpp",
                 "-I\"${workspaceFolder}\\include\"",
                 "-L\"${workspaceFolder}\\lib\"",
                 "-lglfw3",

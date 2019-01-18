@@ -1,9 +1,5 @@
-#include <vendor/glad/glad.h>
-#include <vendor/GLFW/glfw3.h>
-
-#ifndef _BOX_keyboard_h_
-#define _BOX_keyboard_h_
-#endif
+#ifndef BOX_KEYBOARD_HPP
+#define BOX_KEYBOARD_HPP
 
 #define KEY_PRESSED  0x01
 #define KEY_HELD     0x02
@@ -14,11 +10,11 @@ class BOX_Keyboard
     private:
 
         unsigned char mKeyState[1024];
-        unsigned int mModBitfield;
+        unsigned int  mModBitfield;
 
     public:
 
-        BOX_Keyboard(GLFWwindow* aWindow);
+        BOX_Keyboard();
 
         void Update();
 
@@ -32,3 +28,5 @@ class BOX_Keyboard
         unsigned char GetKeyState(int aKey);
 
 };
+
+#endif
