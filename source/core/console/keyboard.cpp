@@ -6,6 +6,11 @@ BOX_Keyboard::BOX_Keyboard()
     mModBitfield = 0;
 }
 
+void BOX_Keyboard::Update()
+{
+
+}
+
 bool BOX_Keyboard::IsKeyPressed(int aKey)
 {
     return mKeyState[aKey] & KEY_PRESSED;

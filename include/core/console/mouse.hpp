@@ -4,11 +4,15 @@
 #ifndef BOX_MOUSE_HPP
 #define BOX_MOUSE_HPP
 
+#define BUTTON_PRESSED  0x01
+#define BUTTON_HELD     0x02
+#define BUTTON_RELEASED 0x04
+#define NUM_BUTTONS     GLFW_MOUSE_BUTTON_LAST + 1
 class BOX_Mouse
 {
     private:
 
-        unsigned char mButtonState[GLFW_MOUSE_BUTTON_LAST + 1];
+        unsigned char mButtonState[NUM_BUTTONS];
         unsigned int  mModBitField;
 
         float         mScrollOffset_x;
@@ -18,9 +22,12 @@ class BOX_Mouse
         float         mPos_dx;
         float         mPos_dy;
 
+        GLFWwindow*   mContext;
+
     public:
 
         BOX_Mouse();
+        BOX_Mouse(GLFWwindow* aContext);
 
         void Update();
 
@@ -29,6 +36,11 @@ class BOX_Mouse
         bool IsButtonReleased(int aButton);
         bool IsModPressed(int aMod);
         bool DidMouseScroll();
+
+        void          SetButtonState(int aButton, unsigned char aState);
+        unsigned char GetButtonState(int aButton);
+        void          SetModBitField(int aMods);
+        void          HandleScroll(double aOffset_x, double aOffset_y);
 
         float GetX()       { return mPos_x; }
         float GetY()       { return mPos_y; }
