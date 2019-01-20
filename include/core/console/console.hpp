@@ -4,6 +4,7 @@
 #include <core/console/window.hpp>
 #include <core/console/keyboard.hpp>
 #include <core/console/mouse.hpp>
+#include <core/console/timing.hpp>
 
 #ifndef BOX_CONSOLE_HPP
 #define BOX_CONSOLE_HPP
@@ -15,6 +16,7 @@ class BOX_Console
         BOX_Window   mWindow;
         BOX_Keyboard mKeyboard;
         BOX_Mouse    mMouse;
+        BOX_Timing   mClock;
         bool         mInitialized;
 
         BOX_Console();
@@ -32,6 +34,7 @@ class BOX_Console
         BOX_Window   GetWindow()   { return mWindow; }
         BOX_Keyboard GetKeyboard() { return mKeyboard; }
         BOX_Mouse    GetMouse()    { return mMouse; }
+        BOX_Timing   GetClock()    { return mClock; }
         GLFWwindow*  GetContext()  { return mWindow.GetContext(); }
 
 };

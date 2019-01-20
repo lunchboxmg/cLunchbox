@@ -42,6 +42,8 @@ class BOX_Mouse
         void          SetModBitField(int aMods);
         void          HandleScroll(double aOffset_x, double aOffset_y);
 
+        void SetContext(GLFWwindow* aContext);
+
         float GetX()       { return mPos_x; }
         float GetY()       { return mPos_y; }
         float GetDX()      { return mPos_dx; }

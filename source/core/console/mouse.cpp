@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <core/console/mouse.hpp>
 
 BOX_Mouse::BOX_Mouse():
@@ -38,7 +40,15 @@ void BOX_Mouse::Update()
     }
 
     double cur_x, cur_y;
+    if (mContext == nullptr)
+    {
+        std::cout << "OH SHIT!";
+    }
     glfwGetCursorPos(mContext, &cur_x, &cur_y);
+    if ((cur_x == NULL) || (cur_y == NULL))
+    {
+        std::cout << "Cursor Error" << std::endl;
+    }
 
     mPos_dx = cur_x - mPos_x;
     mPos_dy = cur_y - mPos_y;
@@ -93,4 +103,16 @@ void BOX_Mouse::HandleScroll(double aOffset_x, double aOffset_y)
 {
     mScrollOffset_x = aOffset_x;
     mScrollOffset_y = aOffset_y;
+}
+
+void BOX_Mouse::SetContext(GLFWwindow* aContext)
+{
+    if (aContext == nullptr)
+    {
+        std::cout << "ERROR: Window Context can be set on the mouse!" << std::endl;
+    }
+    else
+    {
+        mContext = aContext;
+    }
 }

@@ -14,6 +14,7 @@
                 "source/core/console/window.cpp",
                 "source/core/console/keyboard.cpp",
                 "source/core/console/mouse.cpp",
+                "source/core/console/timing.cpp",
                 "source/core/console/console.cpp",
                 "-I\"${workspaceFolder}\\include\"",
                 "-L\"${workspaceFolder}\\lib\"",

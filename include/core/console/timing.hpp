@@ -8,11 +8,11 @@ class BOX_Timing
 {
     private:
 
-        float mCurrent;
-        float mPrevious;
-        float mDelta;
-        float mCount;
-        float mFps;
+        double       mCurrent;
+        double       mPrevious;
+        double       mDelta;
+        double       mFps;
+        unsigned int mCount;
 
     public:
 
@@ -20,11 +20,11 @@ class BOX_Timing
 
         void Update();
 
-        float GetDeviceTime();
-        float GetCurrent();
-        float GetDelta();
-        float GetFps();
-        float GetCount();
+        double       GetDeviceTime() { return glfwGetTime(); }
+        double       GetCurrent()    { return mCurrent; }
+        double       GetDelta()      { return mDelta; }
+        double       GetFps()        { return mFps; }
+        unsigned int GetCount()      { return mCount; }
         
 };
 

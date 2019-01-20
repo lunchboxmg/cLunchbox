@@ -16,35 +16,23 @@ int main()
     }
     BOX_Window window = BOX_Console::Instance().GetWindow();
 
-    // render loop
-    // -----------
-    float prevTime = 0.0;
     while (window.IsOpen())
     {
-        // input
-        // -----
-        //processInput(window);
         processInput(window.GetContext());
 
         // render
-        // ------
         glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         window.Swap();
+        BOX_Console::Instance().Update();
         glfwPollEvents();
 
-        double curTime = glfwGetTime();
-        double dt = curTime - prevTime;
-        prevTime = curTime;
-        //std::cout << "FPS: " << 1/dt << std::endl;
+        std::cout << "FPS: " << BOX_Console::Instance().GetClock().GetFps() << std::endl;
     }
     window.Destroy();
 
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
     glfwTerminate();
     return 9;
 }

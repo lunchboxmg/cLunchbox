@@ -7,9 +7,11 @@
 BOX_Console::BOX_Console():
     mWindow(BOX_Window()),
     mKeyboard(BOX_Keyboard()),
+    mMouse(BOX_Mouse()),
+    mClock(BOX_Timing()),
     mInitialized(false)
 {
-    mMouse = BOX_Mouse(mWindow.GetContext());
+
 }
 
 BOX_Console::~BOX_Console()
@@ -32,6 +34,10 @@ bool BOX_Console::Initialize(unsigned int aWidth, unsigned int aHeight, const ch
     glfwSetMouseButtonCallback(window, MouseButtonCallback);
     glfwSetScrollCallback(window, ScrollCallback);
 
+    // Set the window context on the map so the cursor position can be extracted
+    // during the update cycle.
+    mMouse.SetContext(window);
+
     mInitialized = true;
     return true;
 }
@@ -40,6 +46,7 @@ void BOX_Console::Update()
 {
     mKeyboard.Update();
     mMouse.Update();
+    mClock.Update();
 }
 
 static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScancode, int aAction, int aMods)
@@ -57,8 +64,8 @@ static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScancode, int aActio
         }
         if (aAction == GLFW_RELEASE)
         {
-            unsigned char state = __keyboard.GetKeyState(aKey);
-            __keyboard.SetKeyState(aKey, state ^ KEY_HELD | KEY_RELEASED);
+            __keyboard.RemoveKeyState(aKey, KEY_HELD);
+            __keyboard.SetKeyState(aKey, KEY_RELEASED);
         }
         __keyboard.SetModBitField(aMods);
         std::cout << aKey << "\t" << aAction << "\t" << aMods << std::endl;
