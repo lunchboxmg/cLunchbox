@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "build windows",
             "type": "shell",
             "command": "g++",
             "args": [
@@ -16,14 +16,38 @@
                 "source/core/console/mouse.cpp",
                 "source/core/console/timing.cpp",
                 "source/core/console/console.cpp",
-                "-I\"${workspaceFolder}\\include\"",
-                "-L\"${workspaceFolder}\\lib\"",
+                "-I${workspaceFolder}/include/",
+                "-L${workspaceFolder}/lib/",
                 "-lglfw3",
                 "-lgdi32",
                 "-lopengl32",
-//                "-lgdi32",
-//                "-lglfw3",
-//                "-Wl,--subsystem,windows"
+                "-lgdi32",
+                "-lglfw3"//,
+                "-Wl,--subsystem,windows"
+            ], 
+            "group":{
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build linux",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "source/main.cpp",
+                "source/glad.c",
+                "source/core/console/window.cpp",
+                "source/core/console/keyboard.cpp",
+                "source/core/console/mouse.cpp",
+                "source/core/console/timing.cpp",
+                "source/core/console/console.cpp",
+                "-I${workspaceFolder}/include/",
+                "-L${workspaceFolder}/lib/",
+                "-ldl",
+                "-lGL",
+                "-lglfw"
             ], 
             "group":{
                 "kind": "build",

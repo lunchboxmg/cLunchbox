@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-#include <core/console/console.hpp>
+#include "core/console/console.hpp"
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;

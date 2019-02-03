@@ -39,13 +39,14 @@ void BOX_Mouse::Update()
         }
     }
 
-    double cur_x, cur_y;
+    double cur_x = NO_CURSOR_VALUE;
+    double cur_y = NO_CURSOR_VALUE;
     if (mContext == nullptr)
     {
         std::cout << "OH SHIT!";
     }
     glfwGetCursorPos(mContext, &cur_x, &cur_y);
-    if ((cur_x == NULL) || (cur_y == NULL))
+    if ((cur_x == NO_CURSOR_VALUE) || (cur_y == NO_CURSOR_VALUE))
     {
         std::cout << "Cursor Error" << std::endl;
     }

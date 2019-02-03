@@ -8,6 +8,9 @@
 #define BUTTON_HELD     0x02
 #define BUTTON_RELEASED 0x04
 #define NUM_BUTTONS     GLFW_MOUSE_BUTTON_LAST + 1
+
+#define NO_CURSOR_VALUE -9e9
+
 class BOX_Mouse
 {
     private:
