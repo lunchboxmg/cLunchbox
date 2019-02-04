@@ -1,0 +1,22 @@
+    if (!BOX_Console::Instance().Initialize(SCR_WIDTH, SCR_HEIGHT, "Test Window"))
+    {
+        return -999;
+    }
+    BOX_Window window = BOX_Console::Instance().GetWindow();
+
+    while (window.IsOpen())
+    {
+        processInput(window.GetContext());
+
+        // render
+        glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        window.Swap();
+        BOX_Console::Instance().Update();
+        glfwPollEvents();
+
+        std::cout << "FPS: " << BOX_Console::Instance().GetClock().GetFps() << std::endl;
+    }
+    window.Destroy();

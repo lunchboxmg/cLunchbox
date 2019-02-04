@@ -22,7 +22,7 @@
                 "-lgdi32",
                 "-lopengl32",
                 "-lgdi32",
-                "-lglfw3"//,
+                "-lglfw3",
                 "-Wl,--subsystem,windows"
             ], 
             "group":{
@@ -43,6 +43,7 @@
                 "source/core/console/mouse.cpp",
                 "source/core/console/timing.cpp",
                 "source/core/console/console.cpp",
+                "source/core/windowz.cpp",
                 "-I${workspaceFolder}/include/",
                 "-L${workspaceFolder}/lib/",
                 "-ldl",
