@@ -43,6 +43,7 @@
                 "source/core/console/mouse.cpp",
                 "source/core/console/timing.cpp",
                 "source/core/console/console.cpp",
+                "source/core/glutils/uniforms.cpp",
                 "source/core/windowz.cpp",
                 "-I${workspaceFolder}/include/",
                 "-L${workspaceFolder}/lib/",
