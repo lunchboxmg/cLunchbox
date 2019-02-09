@@ -6,8 +6,6 @@ namespace Renderer
 {
 namespace Uniforms
 {
-    int UNIFORM_NOT_FOUND = -1;
-
     class UBase
     {
         protected:
@@ -62,7 +60,7 @@ namespace Uniforms
             UVec3f(char* aName);
 
             void Load(float aX, float aY, float aZ);
-            void Load(glm::vec3 aVector);
+            void Load(glm::fvec3 aVector);
 
     };
 }
